@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+class CategoriesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+
+    	for ($x = 0; $x <= 10; $x++) {
+    		DB::table('categories')->insert([
+            'name' => str_random(10),
+            'description' => str_random(100),
+             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            
+        ]);
+    
+} 
+        
+    }
+}
