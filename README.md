@@ -33,6 +33,9 @@ laravel cli
 it is in .env.
 If the application key is not set, your user sessions and other encrypted data will not be secure!
 
+creation env database connection
+https://github.com/pphk/VMP1_laravel/blob/master/env%20example
+
 >php artisan serve
 
 Authentication
@@ -46,6 +49,9 @@ migration
 >php artisan make:migration create_categories_table
 >php artisan make:migration create_categories_table
 
+https://github.com/pphk/VMP1_laravel/blob/27f6de3627ce18a0293d282e600417f2f0a219e0/migration
+
+>php artisan migrate
 
 learn at https://laravel.com/docs/5.7/migrations#generating-migrations for datatype
 
@@ -53,11 +59,20 @@ learn at https://laravel.com/docs/5.7/migrations#generating-migrations for datat
 
 seeding
 >php artisan make:seeder CategoriesTableSeeder
+
+https://github.com/pphk/VMP1_laravel/blob/master/seeder
+
 >php artisan db:seed
+
 
 >php artisan db:seed --class=SpecificTableSeeder
 >php artisan migrate:refresh --seed
 >php artisan make:model Category
 
+Route
+https://github.com/pphk/VMP1_laravel/blob/master/Route
+
+
 Contoller
->php artisan make:controller CategoryController --resource
+ >php artisan make:controller CategoryController --resource
+https://github.com/pphk/VMP1_laravel/blob/master/controller
