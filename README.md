@@ -15,7 +15,9 @@ First
 Laravel utilizes Composer to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
 
 
-Download the installer file by accessing the direct download link: https://getcomposer.org/Composer-Setup.exe
+Download the installer file by accessing the direct download link: 
+https://getcomposer.org/Composer-Setup.exe
+
  or visiting the official download page: https://getcomposer.org/download
  
 >composer -v
@@ -73,9 +75,12 @@ https://github.com/pphk/VMP1_laravel/blob/master/seeder
 >php artisan make:model Category
 
 Route
+
 https://github.com/pphk/VMP1_laravel/blob/master/Route
 
 
 Contoller
+
  >php artisan make:controller CategoryController --resource
+ 
 https://github.com/pphk/VMP1_laravel/blob/master/controller
