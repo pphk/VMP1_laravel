@@ -17,15 +17,18 @@ Laravel utilizes Composer to manage its dependencies. So, before using Laravel, 
 
 Download the installer file by accessing the direct download link: https://getcomposer.org/Composer-Setup.exe
  or visiting the official download page: https://getcomposer.org/download
+ 
 >composer -v
 
 
 
 #install specific version
-composer create-project --prefer-dist laravel/laravel=5.5.* VMP_laravel
+
+-composer create-project --prefer-dist laravel/laravel=5.5.* VMP_laravel
 
 #install new latest version
-composer create-project --prefer-dist laravel/laravel VMP_laravel
+
+-composer create-project --prefer-dist laravel/laravel VMP_laravel
 
 
 laravel cli
