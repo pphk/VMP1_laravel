@@ -1,5 +1,5 @@
-| Cli           | Results       |
+| ##Cli           | ##Results       |
 | ------------- |:-------------:|
 | php artisan serve      | to run the project |
-| col 2 is      | centered      |
+| php artisan make:controller YournameController --resource     | to create the controller      |
 | zebra stripes | are neat      |
