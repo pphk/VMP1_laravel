@@ -9,7 +9,7 @@ https://www.apachefriends.org/xampp-files/7.1.23/xampp-win32-7.1.23-0-VC14-insta
 >php -v
 
 
-# -----Installing Laravel-------
+# Installing Laravel
 
 First
 Laravel utilizes Composer to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
