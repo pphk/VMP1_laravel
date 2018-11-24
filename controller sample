@@ -1,0 +1,114 @@
+	public function index() {
+		//$sel = student_exam::all(); // already deleted (for restore)
+
+		$sel = DB::table('student_exams AS s')
+			->join('courses AS c', 's.course_id', '=', 'c.id')
+			->join('students AS st', 'st.id', '=', 's.student_id')
+			->select('s.*', 'c.course_name AS course_name', 'st.myanmar_name AS myanmar_name')
+			->whereNull('s.deleted_at')->get();
+		return view('studentexamrollno.index', compact('subjects', 'sel'));
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		$stus = student::all();
+		$cours = Course::all();
+		return view('studentexamrollno.create', compact('stus', 'cours'));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request) {
+
+		$student_exam = new student_exam();
+		$student_exam->student_id = $request->student_id;
+		$student_exam->course_id = $request->course_id;
+		$student_exam->year = $request->year;
+		$student_exam->exam_rollno = $request->exam_rollno;
+		$student_exam->remark = $request->remark;
+		$student_exam->save();
+		alert()->success('အောင်မြင်စွာသိမ်းဆည်းပြီးပါသည်!', 'You made it.');
+		return Redirect::route('studentexamrollno.index');
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id) {
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
+		$edid = student_exam::findOrFail($id);
+
+		$cours = Course::all();
+
+		$stus = DB::table('students')->where('course_id', '=', $edid->course_id)->get();
+		return view('studentexamrollno.edit', compact('edid', 'stus', 'cours'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id) {
+		$student_exam = student_exam::find($id);
+		$student_exam->year = $request->year;
+		$student_exam->student_id = $request->student_id;
+		$student_exam->course_id = $request->course_id;
+		$student_exam->exam_rollno = $request->exam_rollno;
+		$student_exam->remark = $request->remark;
+		$student_exam->save();
+		alert()->success('အောင်မြင်စွာသိမ်းဆည်းပြီးပါသည်!', 'You update it.');
+		return Redirect::route('studentexamrollno.index');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		student_exam::destroy($id);
+
+		alert()->overlay('အောင်မြင်စွာဖျက်ပြီးပါပြီ!', 'You deleted it.', 'error');
+
+		return Redirect::route('studentexamrollno.index');
+	}
+
+	public function studentexamrollnorestore() {
+
+		//$subjectrest = Course::withTrashed()->get();
+		//$restore = student_exam::onlyTrashed()->get(); // already deleted (for restore)
+		$restore = DB::table('student_exams AS s')
+			->join('courses AS c', 's.course_id', '=', 'c.id')
+			->join('students AS st', 'st.id', '=', 's.student_id')
+			->select('s.*', 'c.course_name AS course_name', 'st.myanmar_name AS myanmar_name')
+			->whereNotNull('s.deleted_at')->get();
+		return view('studentexamrollno.restore', compact('restore'));
+	}
+	public function restore($id) {
+		$student_exam = student_exam::withTrashed()->find($id)->restore();
+		return Redirect::route('studentexamrollno.index');
+	}
